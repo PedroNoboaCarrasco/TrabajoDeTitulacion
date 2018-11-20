@@ -1,0 +1,60 @@
+﻿@model SOP_GAD.Models.Ofertantes
+@{
+    ViewBag.Title = Model.IdOfertantes > 0 ? ViewBag.Obra : "Nuevo Registro";
+}
+
+<link href="~/Assets/CSS/Contenido.css" rel="stylesheet" type="text/css">
+<script src="~/Assets/JS/Validaciones.js" type="text/javascript"></script>
+
+<ol class="breadcrumb">
+    <li><a href="~/Ofertantes/IOfertantesLista/@ViewBag.ActaApertura"><i class="fa fa-hand-o-left" aria-hidden="true"></i>  Atrás</a></li>
+    <li class="active">@(Model.IdOfertantes > 0 ? "Ofertante" : "Nuevo Registro")</li>
+</ol>
+
+<h2 class="headertekst">Ingrese la información del Ofertantes</h2>
+
+@using (Html.BeginForm("Guardar", "Ofertantes", FormMethod.Post, new { id = "frm-ofertantes" }))
+{
+    @Html.HiddenFor(x => x.IdOfertantes)
+    <div class="panel panel-default">
+        <div class="panel-heading">Información del Ofertante</div>
+        <div class="panel-body">
+
+            @*Inputs*@
+            <div class="form-group" style="display:none;">
+                @Html.Label("Codigo del Ofertante", new { @class = "col-lg-2 control-label" })
+                @Html.TextBoxFor(x => x.CodigoOfertantes, new { @class = "formcontrol", @Value = @ViewBag.Codigo, @required = "required" })
+                @Html.ValidationMessageFor(x => x.CodigoOfertantes, null, new { @class = "label label-danger" })
+            </div>
+            <div class="form-group">
+                @Html.Label("Nombre o razon social del ofertante", new { @class = "col-lg-2 control-label" })
+                @Html.TextBoxFor(x => x.NombreOfertante, new { @class = "formcontrol", @placeholder = "Escriba el nombre del ofertante", @maxlength = 30,@onkeypress = "return controlLetra(event)", @required = "required" })
+                @Html.ValidationMessageFor(x => x.NombreOfertante, null, new { @class = "label label-danger" })
+            </div>
+            <br />
+            <div class="form-group">
+                @Html.Label("Descripción", new { @class = "col-lg-2 control-label" })
+                @Html.TextBoxFor(x => x.DescripconOferta, new { @class = "formcontrol", @placeholder = "La descripción de la oferta", @onkeypress = "return controlLetra(event)", @required = "required" })
+                @Html.ValidationMessageFor(x => x.DescripconOferta, null, new { @class = "label label-danger" })
+            </div>
+            <div class="form-group">
+                @Html.Label("Numero de Hojas", new { @class = "col-lg-2 control-label" })
+                @Html.TextBoxFor(x => x.NumeroHojas, new { @class = "formcontrol", @placeholder = "Número de Hojas de la oferta",  @onkeypress = "return validarNumeroEn(event)",@maxlength = 3, @required = "required" })
+                @Html.ValidationMessageFor(x => x.NumeroHojas, null, new { @class = "label label-danger" })
+            </div>
+            <div class="form-group" style="display:none;">
+                @Html.Label("Acta de Apertura", new { @class = "col-lg-2 control-label" })
+                @Html.TextBoxFor(x => x.IdActaApertura, new { @class = "formcontrol", @Value = @ViewBag.ActaApertura, @required = "required" })
+                @Html.ValidationMessageFor(x => x.IdActaApertura, null, new { @class = "label label-danger" })
+            </div>
+
+        </div>
+    </div>
+    <div class="form-group ">
+        <div class="Centrar_content">
+            <button type="submit" class="btn btn-primary">Guardar</button>
+        </div>
+    </div>
+
+
+}

@@ -1,0 +1,83 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="apple-touch-icon" sizes="76x76" href="~/Assets/img/gota-de-agua.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="~/Assets/IMG/Escudo.JPG">
+
+    <link href="~/Assets/CSS/Login.css" rel="stylesheet">
+
+    <title>@ViewBag.Title</title>
+    <!-- Bootstrap -->
+    <link href="~/Assets/VENDORS/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="~/Assets/VENDORS/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.0/css/font-awesome.min.css">
+
+</head>
+<body class="BodyFondo">
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <img src="~/Assets/IMG/LogoCubijies002.png" align="left" width="90" height="50" />
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">  Seguimiento de Obras Públicas</a>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    @*<li>@Html.ActionLink("Inicio", "Index", "Home")</li>*@
+                    <li>@Html.ActionLink("Noticias", "IAbout", "Home")</li>
+                    <li>@Html.ActionLink("Contacto", "IContact", "Home")</li>
+                    <li>@Html.ActionLink("Servicios", "IServices", "Home")</li>
+                    <li>@Html.ActionLink("Cuenta", "IMyProfile", "Home")</li>
+                    <li>
+                        @{
+                            if (Request.IsAuthenticated)
+                            {
+                                using (Html.BeginForm("Logout", "Account", FormMethod.Post, new { id = "logoutForm" }))
+                                {
+                                    @Html.AntiForgeryToken()
+                                    <a href="javascript:document.getElementById('logoutForm').submit()">Cerrar sesión</a>
+                                }
+                            }
+                        }
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+    <!-- Page Content -->
+    <div class="container">
+        @RenderSection("featured", required: false)
+
+        @RenderBody()
+        <!-- Footer -->
+        <hr>
+        <footer class="container-fluid text-center">
+            &copy;
+            <script>document.write(new Date().getFullYear())</script>
+            - Sistema de Obras Públicas
+        </footer>
+    </div>
+    <!-- jQuery -->
+    <script src="~/Assets/vendors/jquery/dist/jquery.min.js"></script>
+
+    <!-- Bootstrap -->
+    <script src="~/Assets/vendors/bootstrap/dist/js/bootstrap.min.js"></script>
+
+</bodyclass="BodyFondo">
+
+</html>
+

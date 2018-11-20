@@ -1,0 +1,63 @@
+﻿@model SOP_GAD.Models.Usuario
+
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_LayoutLogin.cshtml";
+}
+@section featured {
+    <div class="container">
+        <!-- Page Heading/Breadcrumbs -->
+        <div class="row">
+            <div class="col-lg-12">
+                <br />
+                <h1 class="page-header">
+                    Login
+
+                </h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6 col-md-5 col-md-offset-3">
+                <div class="account-wall">
+                    @using (Html.BeginForm())
+                    {
+
+                        <div class="panel panel-default">
+                            <div class="panel-body">
+                                <div class="col-sm-6 col-md-6 col-md-offset-3">
+                                    <span class="fa-stack fa-5x">
+                                        <i class="fa fa-circle fa-stack-2x text-primary"></i>
+                                        <i class="fa fa-user fa-stack-1x fa-inverse"></i>
+                                    </span>
+                                </div>
+                                <br />
+                                <div class="col-sm-1 col-md-10 col-md-offset-1">
+                                    <strong>@Html.ValidationSummary(true, "El usuario o la contraseña es incorrecta.", new { @class = "alert alert-danger" })</strong>
+                                </div>
+                                @Html.AntiForgeryToken()
+                                <div class="form-group">
+                                    @Html.Label("Usuario", new { @class = "control-label col-md-4 col-sm-3 col-xs-12" })
+                                    @Html.EditorFor(model => model.CedulaUsuario, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.CedulaUsuario)
+                                </div>
+                                <div class="form-group">
+                                    @Html.Label("Contraseña", new { @class = "control-label col-md-4 col-sm-3 col-xs-12" })
+                                    @Html.PasswordFor(model => model.ContraseniaUsuario, new { @class = "formcontrol" })
+                                    @Html.ValidationMessageFor(model => model.ContraseniaUsuario)
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-sm-6 col-md-6 col-md-offset-4">
+                                        <input type="submit" class="btn btn-primary" value="Ingresar" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    }
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+}

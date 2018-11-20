@@ -1,0 +1,82 @@
+﻿@model SOP_GAD.Models.CertificacionPresupuestaria
+@{
+    ViewBag.Title = Model.IdCertificadoP > 0 ? Model.NumeroCertificadoP : "Nuevo Registro";
+}
+<link href="~/Assets/CSS/Contenido.css" rel="stylesheet" type="text/css">
+<link href="~/Assets/JS/Contenido.js" rel="stylesheet" type="text/javascript">
+<script src="~/Assets/JS/Validaciones.js" type="text/javascript"></script>
+
+<ol class="breadcrumb">
+    <li><a href="~/SeguimientoObras/ISeguimientoObrasLista/@ViewBag.IdObra"><i class="fa fa-hand-o-left" aria-hidden="true"></i>  Atrás</a></li>
+    <li class="active">@(Model.IdCertificadoP > 0 ? Model.NumeroCertificadoP : "Nuevo Registro")</li>
+</ol>
+
+<h2 class="headertekst">Ingrese la información de la Certificación Presupuestaria</h2>
+
+@using (Html.BeginForm("Guardar", "CertificadoPresupuesto", FormMethod.Post, new { id = "CertificadoPresupuesto" }))
+{
+
+    @Html.HiddenFor(x => x.IdCertificadoP)
+    <div class="panel panel-default">
+        <div class="panel-heading">Información de la Certificación Presupuestaria</div>
+        <div class="panel-body">
+            @*Inputs*@
+            <div class="form-group">
+                @Html.Label("Número del Certificado", new { @class = "col-lg-2 control-label" })
+                @Html.TextBoxFor(x => x.NumeroCertificadoP, new { @class = "formcontrol", @placeholder = "Código del certificado", @onKeyUp = "this.value=this.value.toUpperCase()", @required = "required" })
+                @Html.ValidationMessageFor(x => x.NumeroCertificadoP, null, new { @class = "label label-danger" })
+            </div>
+            <div class="form-group">
+                @Html.Label("Partida presupuestaria", new { @class = "col-lg-2 control-label" })
+                @Html.TextBoxFor(x => x.PartidaPresupuestaria, new { @class = "formcontrol", @placeholder = "750104", @onkeypress = "return validarNumeroEn(event)", @required = "required" })
+                @Html.ValidationMessageFor(x => x.PartidaPresupuestaria, null, new { @class = "label label-danger" })
+            </div>
+            <div class="form-group">
+                @Html.Label("Descripción", new { @class = "col-lg-2 control-label" })
+                @Html.TextBoxFor(x => x.DescripcionCertificadoP, new { @class = "formcontrol", @placeholder = "Motivo de la obra", @onkeypress = "return controlLetra(event)", @required = "required" })
+                @Html.ValidationMessageFor(x => x.DescripcionCertificadoP, null, new { @class = "label label-danger" })
+            </div>
+            <div class="form-group">
+                @Html.Label("Valor Referencial", new { @class = "col-lg-2 control-label" })
+                @Html.TextBoxFor(x => x.ValorReferencial, new { @class = "formcontrol", @placeholder = "000000,00", @onkeypress = "return validarComa(event)", @maxlength = 10, @required = "required" })
+                @Html.ValidationMessageFor(x => x.ValorReferencial, null, new { @class = "label label-danger" })
+            </div>
+           @if (Model.IdCertificadoP > 0) { 
+                <div class="form-group">
+                    @Html.Label("Fecha", new { @class = "col-lg-2 control-label" })
+                    @Html.TextBoxFor(x => x.FechaCertificadoP, new { @class = "formcontrol", @placeholder = "2018-06-30", @onKeyUp = "this.value=this.value.toUpperCase()", @required = "required" })
+                    @Html.ValidationMessageFor(x => x.FechaCertificadoP, null, new { @class = "label label-danger" })
+                </div>
+                <div style="display:none;">
+                    @Html.Label("Obra Publica", new { @class = "col-lg-2 control-label" })
+                    @Html.TextBoxFor(x => x.IdObraPublica, new { @class = "formcontrol", @placeholder = "Obra", @required = "required" })
+                    @Html.ValidationMessageFor(x => x.IdObraPublica, null, new { @class = "label label-danger" })
+                </div>
+           }
+           else
+           {
+                <div class="form-group">
+                        @Html.Label("Fecha", new { @class = "col-lg-2 control-label" })
+                        @Html.TextBoxFor(x => x.FechaCertificadoP, new { @class = "formcontrol date", type = "date", @onKeyUp = "this.value=this.value.toUpperCase()", @required = "required" })
+                        @Html.ValidationMessageFor(x => x.FechaCertificadoP, null, new { @class = "label label-danger" })
+                </div>
+                <div  class="form-group" style="display:none;">
+                    @*@Html.DropDownListFor(x => x.IdObraPublica, (List<SelectListItem>)ViewBag.MovieType, new { @class = "formcontrol" })
+                    *@
+                    @Html.Label("Obra Publica", new { @class = "col-lg-2 control-label" })
+                    @Html.TextBoxFor(x => x.IdObraPublica, new {@Value= @ViewBag.IdObra, @class = "formcontrol", @placeholder = "Obra", @required = "required" })
+                    @Html.ValidationMessageFor(x => x.IdObraPublica, null, new { @class = "label label-danger" })
+                </div>
+           }
+            
+                                    
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="Centrar_content">
+            <button type="submit" class="btn btn-primary">Guardar</button>
+        </div>
+    </div>
+
+}

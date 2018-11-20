@@ -1,0 +1,64 @@
+﻿@model List<SOP_GAD.Models.PreguntaRespuesta>
+@{
+    ViewBag.Title = "Preguntas con sus Respuestas";
+}
+
+<ol class="breadcrumb">
+    <li><a href="~/SeguimientoObras/ISeguimientoObrasLista/@ViewBag.IdObra"><i class="fa fa-hand-o-left" aria-hidden="true"></i> Seguimiento de la Obra</a></li>
+    <label class="Derecha_content">
+        @Html.ActionLink("Agregar Pregunta", "IPreguntaRIngreso", "PreguntaRespuesta", new { id = 0, Informe = @ViewBag.InformeAclaracion }, null)
+    </label>
+</ol>
+
+<link href="~/Assets/CSS/Tablas.css" rel="stylesheet" type="text/css">
+<h2 class="headertekst">Lista de Preguntas con sus Respuestas</h2>
+@{
+    int numero = 1;
+
+}
+
+<div>
+    @if (Model.Count != 0)
+    {
+        
+    <table id="mitabla" class="Centrar_content">
+        <thead>
+            <tr>
+                <th>N°</th>
+                <th>Pregunta</th>
+                <th>Respuesta</th>
+                <th colspan="2">Opcion</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var Ob in Model)
+            {
+                <tr>
+                    <td>@numero</td>
+                    <td>@Ob.Pregunta</td>
+                    <td>@Ob.Respuesta</td>
+                    <td>@Html.ActionLink("Mod", "IPreguntaRIngreso", "PreguntaRespuesta", new { id = @Ob.IdPreguntaRespuesta, Informe = @ViewBag.InformeAclaracion }, null)</td>
+                    <td>@Html.ActionLink("Eli", "Eliminar", "PreguntaRespuesta", new { id = @Ob.IdPreguntaRespuesta, IdInformePR = Ob.IdInformePR,  }, new { onclick = "return confirm('Desea eliminar la pregunta del informe?');" })</td>
+                </tr>
+                numero++;
+            }
+        </tbody>
+    </table>
+    }
+    else
+    {
+        <h2 class="headertekst">Ingrese las preguntas con sus respuestas para el Informe</h2>
+
+    }
+</div>
+<div>
+
+    @if (ViewBag.Message != null)
+    {
+        <script type="text/javascript">
+            window.onload = function () {
+                alert("@ViewBag.Message");
+            }
+        </script>
+    }
+</div>

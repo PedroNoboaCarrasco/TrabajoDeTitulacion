@@ -1,0 +1,53 @@
+﻿@model List<SOP_GAD.Models.Ofertantes>
+@{
+    ViewBag.Title = "Ofertantes";
+}
+
+<ol class="breadcrumb">
+    <li><a href="~/SeguimientoObras/ISeguimientoObrasLista/@ViewBag.ActaObraID"><i class="fa fa-hand-o-left" aria-hidden="true"></i> Lista de Documentos</a></li>
+</ol>
+
+<link href="~/Assets/CSS/Tablas.css" rel="stylesheet" type="text/css">
+<h2 class="headertekst">Lista de Ofertantes</h2>
+
+<div>
+    @if (Model.Count != 0)
+    {
+
+        <table id="mitabla" class="Centrar_content">
+            <thead>
+                <tr>
+                    <th>Codigo</th>
+                    <th>Nombre o Razon Social</th>
+                    <th>Opcion</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var Ob in Model)
+                {
+                    <tr>
+                        <td>@Ob.CodigoOfertantes</td>
+                        <td>@Ob.NombreOfertante</td>
+                        <td>@Html.ActionLink("Informacion de la Oferta", "IListaOfertas", "Ofertas", new { idActa = Ob.IdActaApertura, idOfer = @Ob.IdOfertantes }, null)</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <h2 class="headertekst">Ingrese la informacion de los ofertantes de la obra.</h2>
+
+    }
+</div>
+<div>
+
+    @if (ViewBag.Message != null)
+    {
+        <script type="text/javascript">
+            window.onload = function () {
+                alert("@ViewBag.Message");
+            }
+        </script>
+    }
+</div>

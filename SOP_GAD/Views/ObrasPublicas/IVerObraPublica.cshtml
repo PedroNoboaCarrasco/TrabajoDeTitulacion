@@ -1,0 +1,112 @@
+﻿@model SOP_GAD.Models.ObrasPublicas
+@{
+    ViewBag.Title = Model.IdObraPublica > 0 ? Model.ObjetoProcesoObra : "Nuevo Registro";
+}
+<link href="~/Assets/CSS/Contenido.css" rel="stylesheet" type="text/css">
+
+
+<ol class="breadcrumb">
+    <li><a href="~/ObrasPublicas/IObrasPublicas"><i class="fa fa-hand-o-left" aria-hidden="true"></i>  Atrás</a></li>
+    <li class="active">@(Model.IdObraPublica > 0 ? Model.ObjetoProcesoObra : "Nuevo Registro")</li>
+</ol>
+
+<h2 class="headertekst">Eliminar Obra Publica</h2>
+@using (Html.BeginForm("Eliminar", "ObrasPublicas", FormMethod.Post, new { id = "frm-obraspublicas" }))
+{
+    @Html.HiddenFor(x => x.IdObraPublica)
+    <div class="panel panel-default">
+        <div class="panel-heading">Información de Obra Publica</div>
+        <div class="panel-body">
+            @*Inputs*@
+            <div class="form-group">
+                @Html.Label("Entidad", new { @class = "col-lg-2 control-label" })
+                @Html.TextBoxFor(x => x.EntidadObra, new { @class = "formcontrol", @placeholder = "Entidad", @onKeyUp = "this.value=this.value.toUpperCase()" })
+                @Html.ValidationMessageFor(x => x.EntidadObra, null, new { @class = "label label-danger" })
+            </div>
+            <div class="form-group">
+                @Html.Label("Objeto de Proceso", new { @class = "col-lg-2 control-label" })
+                @Html.TextBoxFor(x => x.ObjetoProcesoObra, new { @class = "formcontrol", @placeholder = "Objeto de Proceso", @onKeyUp = "this.value=this.value.toUpperCase()" })
+                @Html.ValidationMessageFor(x => x.ObjetoProcesoObra, null, new { @class = "label label-danger" })
+            </div>
+            <div class="form-group">
+                @Html.Label("Código", new { @class = "col-lg-2 control-label" })
+                @Html.TextBoxFor(x => x.CodigoProcesoObra, new { @class = "formcontrol", @placeholder = "Código", @onKeyUp = "this.value=this.value.toUpperCase()" })
+                @Html.ValidationMessageFor(x => x.CodigoProcesoObra, null, new { @class = "label label-danger" })
+            </div>
+            <div class="form-group">
+                @Html.Label("Tipo Compra", new { @class = "col-lg-2 control-label" })
+                @Html.TextBoxFor(x => x.TipoCompraObra, new { @class = "formcontrol", @placeholder = "Tipo Compra", @onKeyUp = "this.value=this.value.toUpperCase()" })
+                @Html.ValidationMessageFor(x => x.TipoCompraObra, null, new { @class = "label label-danger" })
+            </div>
+            <div class="form-group">
+                @Html.Label("Presupuesto Referencial Total (Sin Iva)", new { @class = "col-lg-2 control-label" })
+                @Html.TextBoxFor(x => x.PresupuestoObra, new { @class = "formcontrol", @placeholder = "Números" })
+                @Html.ValidationMessageFor(x => x.PresupuestoObra, null, new { @class = "label label-danger" })
+            </div>
+            <br /><br />
+            <div class="form-group">
+                @Html.Label("Tipo de Contratación", new { @class = "col-lg-2 control-label" })
+                @Html.TextBoxFor(x => x.TipoContratoObra, new { @class = "formcontrol", @placeholder = "Tipo de Contratación", @onKeyUp = "this.value=this.value.toUpperCase()" })
+                @Html.ValidationMessageFor(x => x.TipoContratoObra, null, new { @class = "label label-danger" })
+            </div>
+
+            <div class="form-group">
+                @Html.Label("Anticipo", new { @class = "col-lg-2 control-label" })
+                @Html.TextBoxFor(x => x.Anticipo, new { @class = "formcontrol", @placeholder = "Números" })
+                @Html.ValidationMessageFor(x => x.Anticipo, null, new { @class = "label label-danger" })
+            </div>
+            <div class="form-group">
+                @Html.Label("Saldo", new { @class = "col-lg-2 control-label" })
+                @Html.TextBoxFor(x => x.Saldo, new { @class = "formcontrol", @placeholder = "Números" })
+                @Html.ValidationMessageFor(x => x.Saldo, null, new { @class = "label label-danger" })
+            </div>
+
+            <div class="form-group">
+                @Html.Label("Tipo de Adjudicación", new { @class = "col-lg-2 control-label" })
+                @Html.TextBoxFor(x => x.TipoAdjudicacionObra, new { @class = "formcontrol", @placeholder = "Tipo de Adjudicación", @onKeyUp = "this.value=this.value.toUpperCase()" })
+                @Html.ValidationMessageFor(x => x.TipoAdjudicacionObra, null, new { @class = "label label-danger" })
+            </div>
+
+            <div class="form-group">
+                @Html.Label("Plazo de Entrega", new { @class = "col-lg-2 control-label" })
+                @Html.TextBoxFor(x => x.PlazoEntrega, new { @class = "formcontrol", @placeholder = "Números" })
+                @Html.ValidationMessageFor(x => x.PlazoEntrega, null, new { @class = "label label-danger" })
+            </div>
+            <div class="form-group">
+                @Html.Label("Vigencia de Oferta", new { @class = "col-lg-2 control-label" })
+                @Html.TextBoxFor(x => x.VigenciaOferta, new { @class = "formcontrol", @placeholder = "Números" })
+                @Html.ValidationMessageFor(x => x.VigenciaOferta, null, new { @class = "label label-danger" })
+            </div>
+
+            <div class="form-group">
+                @Html.Label("Funcionario encargado del proceso", new { @class = "col-lg-2 control-label" })
+                @Html.TextBoxFor(x => x.FuncionarioEncargado, new { @class = "formcontrol", @placeholder = "Funcionario", @onKeyUp = "this.value=this.value.toUpperCase()" })
+                @Html.ValidationMessageFor(x => x.FuncionarioEncargado, null, new { @class = "label label-danger" })
+            </div>
+            <br />
+            <div class="form-group">
+                @Html.Label("Estado del Proceso", new { @class = "col-lg-2 control-label" })
+                @Html.TextBoxFor(x => x.EstadoProceso, new { @class = "formcontrol", @placeholder = "Estado del Proceso", @onKeyUp = "this.value=this.value.toUpperCase()" })
+                @Html.ValidationMessageFor(x => x.EstadoProceso, null, new { @class = "label label-danger" })
+            </div>
+            <div class="form-group">
+                @Html.Label("Estado en el cual finalizó el Proceso", new { @class = "col-lg-2 control-label" })
+                @Html.TextBoxFor(x => x.Estadofinalizacion, new { @class = "formcontrol", @placeholder = "Estado final", @onKeyUp = "this.value=this.value.toUpperCase()" })
+                @Html.ValidationMessageFor(x => x.Estadofinalizacion, null, new { @class = "label label-danger" })
+            </div>
+            <br />
+            <div class="form-group">
+                @Html.Label("Descripción", new { @class = "col-lg-2 control-label" })
+                @Html.TextBoxFor(x => x.Descripcion, new { @class = "formcontrol", @placeholder = "Barrio", @onKeyUp = "this.value=this.value.toUpperCase()" })
+                @Html.ValidationMessageFor(x => x.Descripcion, null, new { @class = "label label-danger" })
+            </div>
+
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="Centrar_content">
+            <button type="submit" onclick="return confirm('Esta seguro de eliminar este registro')" class="btn btn-danger">Eliminar</button>
+        </div>
+    </div>
+}

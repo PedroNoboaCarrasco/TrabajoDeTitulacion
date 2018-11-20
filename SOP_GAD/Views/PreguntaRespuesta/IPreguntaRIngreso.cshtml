@@ -1,0 +1,51 @@
+﻿@model SOP_GAD.Models.PreguntaRespuesta
+@{
+    ViewBag.Title = Model.IdPreguntaRespuesta > 0 ? "Modificar Información" : "Nuevo Registro";
+}
+<link href="~/Assets/CSS/Contenido.css" rel="stylesheet" type="text/css">
+
+<ol class="breadcrumb">
+    <li><a href="~/PreguntaRespuesta/IPreguntasRespuestasLista/@ViewBag.InformeAclaracion"><i class="fa fa-hand-o-left" aria-hidden="true"></i>  Atrás</a></li>
+    <li class="active">@(Model.IdPreguntaRespuesta > 0 ? "Modificar Información" : "Nuevo Registro")</li>
+</ol>
+
+<h2 class="headertekst">Ingrese la información de la Pregunta con su respuesta</h2>
+
+
+
+@using (Html.BeginForm("Guardar", "PreguntaRespuesta", FormMethod.Post, new { id = "frm-preguntaR" }))
+{
+
+    @Html.HiddenFor(x => x.IdPreguntaRespuesta)
+    <div class="panel panel-default">
+        <div class="panel-heading">Información de Pregunta y Respuesta</div>
+        <div class="panel-body">
+            @*Inputs*@
+
+            
+            <div class="form-group">
+                @Html.Label("Pregunta", new { @class = "col-lg-2 control-label" })
+                @Html.TextBoxFor(x => x.Pregunta, new { @class = "formcontrol", @placeholder = "Escriba la pregunta", @onKeyUp = "this.value=this.value.toUpperCase()", @required = "required" })
+                @Html.ValidationMessageFor(x => x.Pregunta, null, new { @class = "label label-danger" })
+            </div>
+            <div class="form-group">
+                @Html.Label("Respuesta", new { @class = "col-lg-2 control-label" })
+                @Html.TextBoxFor(x => x.Respuesta, new { @class = "formcontrol", @placeholder = "Escriba la respuesta", @required = "required" })
+                @Html.ValidationMessageFor(x => x.Respuesta, null, new { @class = "label label-danger" })
+            </div>
+            <div class="form-group" style="display:none">
+                @Html.Label("Id Informe", new { @class = "col-lg-2 control-label" })
+                @Html.TextBoxFor(x => x.IdInformePR, new { @class = "formcontrol", @Value = @ViewBag.InformeAclaracion, @required = "required" })
+                @Html.ValidationMessageFor(x => x.IdInformePR, null, new { @class = "label label-danger" })
+            </div>
+
+        </div>
+    </div>
+
+    <div class="form-group ">
+        <div class="Centrar_content">
+            <button type="submit" class="btn btn-primary">Guardar</button>
+        </div>
+    </div>
+
+}

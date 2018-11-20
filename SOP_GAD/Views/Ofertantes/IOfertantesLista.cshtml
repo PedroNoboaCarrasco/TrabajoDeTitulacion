@@ -1,0 +1,65 @@
+﻿@model List<SOP_GAD.Models.Ofertantes>
+@{
+    ViewBag.Title = "Ofertantes";
+}
+
+<ol class="breadcrumb">
+    <li><a href="~/SeguimientoObras/ISeguimientoObrasLista/@ViewBag.Obra" ><i class="fa fa-hand-o-left" aria-hidden="true"></i> Lista de Documentos</a></li>
+    <label class="Derecha_content">
+        @Html.ActionLink("Agregar Ofertante", "IOfertantesIngreso", "Ofertantes", new { id = 0, Acta = @ViewBag.ActaOfertantes }, null)
+    </label>
+</ol>
+
+<link href="~/Assets/CSS/Tablas.css" rel="stylesheet" type="text/css">
+<h2 class="headertekst">Lista de Ofertantes</h2>
+@{
+    int numero = 1;
+}
+
+<div>
+    @if (Model.Count != 0)
+    {
+
+        <table id="mitabla" class="Centrar_content">
+            <thead>
+                <tr>
+                    <th>Codigo</th>
+                    <th>Nombre o Razon Social</th>
+                    <th>Descripción</th>
+                    <th>Número de Hojas</th>
+                    <th colspan="2">Opcion</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var Ob in Model)
+                {
+                    <tr>
+                        <td>@numero</td>
+                        <td>@Ob.NombreOfertante</td>
+                        <td>@Ob.DescripconOferta</td>
+                        <td>@Ob.NumeroHojas</td>
+                        <td>@Html.ActionLink("Mod", "IOfertantesIngreso", "Ofertantes", new { id = @Ob.IdOfertantes, Acta = Ob.IdActaApertura }, null)</td>
+                        <td>@Html.ActionLink("Eli", "Eliminar", "Ofertantes", new { id = @Ob.IdOfertantes, Acta = Ob.IdActaApertura, }, new { onclick = "return confirm('Desea eliminar al Ofertante del Acta de Apertura?');" })</td>
+                    </tr>
+                    numero++;
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <h2 class="headertekst">Ingrese la informacion de los ofertantes de la obra.</h2>
+
+    }
+</div>
+<div>
+
+    @if (ViewBag.Message != null)
+    {
+        <script type="text/javascript">
+            window.onload = function () {
+                alert("@ViewBag.Message");
+            }
+        </script>
+    }
+</div>

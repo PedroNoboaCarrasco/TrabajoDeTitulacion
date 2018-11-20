@@ -1,0 +1,59 @@
+﻿.BodyFondo {  
+               background-image:url(../IMG/Fondo008.jpg);
+               background-size:cover;         
+ }
+.Centrar_content {
+    text-align:center;
+}
+.Izquiera_content {
+    float:left;
+}
+.Derecha_content {
+    float:right;
+}
+.submenu_content {
+
+}
+h2.headertekst {
+  text-align: center;
+  font-weight: bold;
+}
+.CentradoCont {
+  text-align: center;
+}
+.formcontrol {
+    /*height:50px;*/
+   width:69%;
+}
+.Ocultar {
+display:none;
+}
+.x_Relleno {
+margin:auto;
+width:100%;
+
+}
+.x_Rellenoizq {
+width:80%;
+float:left;
+}
+.x_Rellenodere {
+width:20%;
+float:left;
+}
+
+/*Usuario*/
+.x_content {
+    padding: 0 5px 6px;
+    position: relative;
+    width: 100%;
+    float: left;
+    clear: both;
+    margin-top: 5px;
+    border:2px solid;
+    border-color:white;
+}
+.x_content h4 {
+    font-size: 16px;
+    font-weight: 500;
+}

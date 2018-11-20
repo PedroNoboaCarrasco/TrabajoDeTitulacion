@@ -1,0 +1,76 @@
+﻿table tr:hover{
+ background-color:#F0F3FA;
+}
+
+#lista > table {width:99%}
+#lista {
+    width:800px;
+    height: 120px;
+    overflow:auto;
+    padding-bottom:3px;
+}
+
+.derecha
+{
+    text-align:right;
+}
+/*Segunda parte------------------*/
+
+#mitabla{
+/*estilo de el cuerpo de nuestra tabla*/
+background-color: #1e8cbe;
+width:80%;
+margin:24px auto;
+border-left: 1px solid #ccc;
+border-right: 1px solid #ccc;
+font-family:helvetica,arial,sans-serif;
+font-weight:normal;
+text-transform: uppercase;
+}
+
+#mitabla th{
+/*estilo de los elementos(th)*/
+background-color: #278dbc;
+color:#fff;
+font-weight: normal;
+font-size:14px;
+padding: 8px;
+}
+
+#mitabla td{
+
+/*estilo a los elementos (td)*/
+width:100px;
+height: 24px;
+}
+
+/***Aqui esta la magia ahora vamos usar el  nth-child()***/
+
+#mitabla tr:nth-child(odd){
+
+/*para los colores de las filas impares*/
+background-color: #ffffff;
+}
+
+#mitabla tr:nth-child(even){
+
+/*para los colores de las filas pares*/
+background:#EDEDED;
+}
+
+/*estilo para la busqueda de información*/
+#datos	{border:1px solid #ccc;padding:10px;}
+#datos tr:nth-child(even) {background:#ccc;}
+#datos td {padding:5px;}
+
+#mitabla caption {
+    font-family: Arial;
+    font-weight: bold;
+    font-size:large;
+}
+
+#mitabla thead {
+    text-align:center;
+    align-content:center;
+
+}

@@ -1,0 +1,50 @@
+﻿@model SOP_GAD.Models.Barrio
+
+@{
+    ViewBag.Title = Model.IdBarrio > 0 ? Model.NombreBarrio : "Nuevo Registro";
+   <!--Layout = "~/Views/Shared/_Layout.cshtml"; -->
+}
+
+<script src="~/Assets/JS/Validaciones.js" type="text/javascript"></script>
+
+<ol class="breadcrumb">
+    <li><a href="~/Barrio/IBarriosLista"><i class="fa fa-hand-o-left" aria-hidden="true"></i>  Atrás</a></li>
+    <li class="active">@(Model.IdBarrio > 0 ? Model.NombreBarrio : "Nuevo Registro")</li>
+</ol>
+
+<h2 class="headertekst">Ingrese la información del Barrio</h2>
+
+
+@using (Html.BeginForm("Guardar", "Barrio", FormMethod.Post, new { id = "frm-barrio" }))
+{
+    @Html.HiddenFor(x => x.IdBarrio)
+    <div class="panel panel-default">
+        <div class="panel-heading">Información del barrio</div>
+        <div class="panel-body">
+            @*Inputs*@
+            <div class="form-group">
+                @Html.Label("Nombre", new { @class = "col-lg-2 control-label" })
+                @Html.TextBoxFor(x => x.NombreBarrio, new { @class = "formcontrol", @placeholder = "Escriba el Nombre del barrio", @maxlength = 30, @required = "required" })
+                @Html.ValidationMessageFor(x => x.NombreBarrio, null, new { @class = "label label-danger" })
+            </div>
+            <div class="form-group">
+                @Html.Label("Numero de Población", new { @class = "col-lg-2 control-label" })
+                @Html.TextBoxFor(x => x.PoblacionBarrio, new { @class = "formcontrol", @placeholder = "Números", @maxlength = 10, @onkeypress = "return validarNumeroEn(event)", @required = "required" })
+                @Html.ValidationMessageFor(x => x.PoblacionBarrio, null, new { @class = "label label-danger" })
+            </div>
+            <div class="form-group">
+                @Html.Label("Comunidad", new { @class = "col-lg-2 control-label" })
+                @*@Html.TextBoxFor(x => x.ComunidadBarrio, new { @class = "formcontrol", @placeholder = "Escriba la Comunidad", @maxlength = 30, @onkeypress = "return controlLetra(event)", @required = "required" })*@
+                @Html.DropDownListFor(x => x.ComunidadBarrio, (List<SelectListItem>)ViewBag.MovieType, new { @class = "formcontrol", @required = "required" })
+                @Html.ValidationMessageFor(x => x.ComunidadBarrio, null, new { @class = "label label-danger" })
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="Centrar_content">
+            <button type="submit" class="btn btn-primary">Guardar</button>
+        </div>
+    </div>
+
+}

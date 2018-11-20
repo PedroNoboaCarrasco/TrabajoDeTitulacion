@@ -1,0 +1,17 @@
+﻿.Centrar_content {
+    text-align:center;
+}
+.Izquiera_content {
+    float:left;
+}
+.Derecha_content {
+    float:right;
+}
+.FondoPie {
+    /*background-image: url("~/Assets/IMG/PIE001.jpg");*/
+    background-color: #222;
+    border-color:#080808;
+    color:white;
+    font-size:10px;
+}
+

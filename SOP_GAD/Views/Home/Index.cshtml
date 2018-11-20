@@ -1,0 +1,77 @@
+﻿@model SOP_GAD.Models.Usuario
+@{
+    ViewBag.Title = "Página Principal";
+    //Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@*@Session["CodigoUser"]*@
+
+
+<!-- Custom Theme Style -->
+<div style="margin:auto;width:100%;">
+    <div style="width:80%;float:left;color:white;">
+        <div class="Centrar_content">
+            <img style="width:50%;" src="~/Assets/IMG/GadCubijies.jpg" />
+        </div>
+        <br />
+        <p align="justify">
+            Estimado USUARIO, bienvenido al Sistema de Seguimiento de Obras Públicas, en este sistema usted podrá registrar la información 
+            necesaria de acuerdo al seguimiento de Obras Públicas y podrá generar los respectivos documentos a legalizar
+            conforme a los lineamientos establecidos por el Sistema Oficial de Contratación Pública
+            y en concordancia con el seguimiento y los objetivos institucionales, esta información es sensible a la toma de decisiones
+            por parte de las Autoridades, por lo que se solicita su uso de forma discreta así como confidencial.
+        </p>
+        <p align="justify">
+            Para dudas e inquietudes sobre la documentación de los procesos que conllevan la realización de las Obras y Contrataciones, el Sistema Oficial de Contratación Pública del Ecuador (SOCE)
+            se encuentra a su disposición, comunicarse a:
+        </p>
+        <p align="justify">
+            Pagina Web: www.compraspublicas.gob.ec/ProcesoContratacion/compras/,<br>
+            Teléfonos: 3 3730-640 Ext. 1092. RIOBAMBA (Ventanilla)
+
+        </p>
+        <p align="justify">
+            El Gobierno Autónomo Desentralizado de la Parroquial de Cubijies se encuentra a su disposición con la finalidad de brindar
+            los servicios necesarios y desarrollo de Obras para el veneficio de las comunidades.
+        </p>
+        <p align="justify">
+            Si ocurriere alguna duda sobre el funcionamiento del sistema o su uso, por favor, no dude en ponerse
+            en contacto al:
+        </p>
+        <p align="justify">
+            Correos: pedronobboacarrasco@yahoo.es
+            <br>Teléfonos: (593) 2944412        </p>
+
+        <p>“Vamos Juntos a cumplir las Obras”</p>
+    </div>
+    <div style="width:20%;float:left;">
+        <div class="x_content" style="border:2px solid;border-color:white;">
+            <div class="col-md-12 Centrar_content"><label>BIENVENIDO</label></div>
+            <div class="col-md-12">
+                <div class="form-group">
+                    <label>Usuario:</label>
+                    @Model.CargoUsuario
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="form-group">
+                    <label>Cédula:</label>
+                    @Model.CedulaUsuario
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="form-group">
+                    <label>Nombres:</label>
+                     @Model.NombreUsuario
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="form-group">
+                    <label>Apelidos:</label>
+                    @Model.ApellidoUsuario
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

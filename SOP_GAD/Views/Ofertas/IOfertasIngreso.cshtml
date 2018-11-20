@@ -1,0 +1,100 @@
+﻿@model SOP_GAD.Models.Ofertas
+@{
+    ViewBag.Title = Model.IdActaCalificacion > 0 ? ViewBag.Ofertante : "Nuevo Registro";
+}
+
+<link href="~/Assets/CSS/Contenido.css" rel="stylesheet" type="text/css">
+<script src="~/Assets/JS/Validaciones.js" type="text/javascript"></script>
+
+<ol class="breadcrumb">
+    <li><a href="~/Ofertas/IListaOfertas?idActa=@ViewBag.IdActaCalificacion&idOfer=@ViewBag.IdOfertante"><i class="fa fa-hand-o-left" aria-hidden="true"></i>  Atrás</a></li>
+    <li class="active">@(Model.IdOferta > 0 ? "Información de la Oferta" : "Nuevo Registro")</li>
+</ol>
+
+<h2 class="headertekst">Ingrese la información de la Oferta</h2>
+@using (Html.BeginForm("Guardar", "Ofertas", FormMethod.Post, new { id = "frm-preguntaR" }))
+{
+    @Html.HiddenFor(x => x.IdOferta)
+    <div class="panel panel-default">
+        <div class="panel-heading">Información de Pregunta y Respuesta</div>
+        <div class="panel-body">
+            @*Inputs*@
+            @if (Model.IdOferta > 0)
+            {
+            <div class="form-group"style="display:none;">
+                @Html.Label("Numero", new { @class = "col-lg-2 control-label" })
+                @Html.TextBoxFor(x => x.Numero, new { @class = "formcontrol", @onkeypress = "return validarNumeroEn(event)", @required = "required" })
+                @Html.ValidationMessageFor(x => x.Numero, null, new { @class = "label label-danger" })
+            </div>
+            <div class="form-group">
+                @Html.Label("Parametro", new { @class = "col-lg-2 control-label" })
+                @Html.TextBoxFor(x => x.Parametro, new { @class = "formcontrol", @placeholder = "Escriba el parametro a calificar", @onkeypress = "return controlLetra(event)", @required = "required", @readonly = "readonly" })
+                @Html.ValidationMessageFor(x => x.Parametro, null, new { @class = "label label-danger" })
+            </div>
+            <div class="form-group">
+                @Html.Label("Cumple", new { @class = "col-lg-2 control-label" })
+                @*@Html.TextBoxFor(x => x.Cumple, new { @class = "formcontrol", @placeholder = "Escriba “Si Cumple” o “No Cumple” el parametro ", @required = "required" })*@
+                @Html.DropDownListFor(x => x.Cumple, (List<SelectListItem>)ViewBag.MovieType, new { @class = "formcontrol" , @required= "required"})
+                @Html.ValidationMessageFor(x => x.Cumple, null, new { @class = "label label-danger" })
+            </div>
+            <div class="form-group">
+                @Html.Label("Fundamento", new { @class = "col-lg-2 control-label" })
+                @Html.TextBoxFor(x => x.Fundamento, new { @class = "formcontrol", @placeholder = "Escriba el porque califica o no el parametro", @onkeypress = "return controlLetra(event)", @required = "required" })
+                @Html.ValidationMessageFor(x => x.Fundamento, null, new { @class = "label label-danger" })
+            </div>
+
+            <div class="form-group" style="display:none">
+                @Html.Label("Id Ofertante", new { @class = "col-lg-2 control-label" })
+                @Html.TextBoxFor(x => x.IdOfertante, new { @class = "formcontrol", @onkeypress = "return validarNumeroEn(event)", @required = "required" })
+                @Html.ValidationMessageFor(x => x.IdOfertante, null, new { @class = "label label-danger" })
+            </div>
+            <div class="form-group" style="display:none">
+                @Html.Label("Id ActaCalificación", new { @class = "col-lg-2 control-label" })
+                @Html.TextBoxFor(x => x.IdActaCalificacion, new { @class = "formcontrol", @onkeypress = "return validarNumeroEn(event)", @required = "required" })
+                @Html.ValidationMessageFor(x => x.IdActaCalificacion, null, new { @class = "label label-danger" })
+            </div>
+            }
+            else
+            {
+                <div class="form-group"style="display:none">
+                    @Html.Label("Numero", new { @class = "col-lg-2 control-label" })
+                    @Html.TextBoxFor(x => x.Numero, new { @class = "formcontrol", @Value = @ViewBag.OferNumero, @onkeypress = "return validarNumeroEn(event)", @required = "required" })
+                    @Html.ValidationMessageFor(x => x.Numero, null, new { @class = "label label-danger" })
+                </div>
+                <div class="form-group">
+                    @Html.Label("Parametro", new { @class = "col-lg-2 control-label" })
+                    @Html.TextBoxFor(x => x.Parametro, new { @class = "formcontrol", @Value = @ViewBag.ParametroOf, @onkeypress = "return controlLetra(event)", @required = "required", @readonly= "readonly" })
+                    @Html.ValidationMessageFor(x => x.Parametro, null, new { @class = "label label-danger" })
+                </div>
+                <div class="form-group">
+                    @Html.Label("Cumple", new { @class = "col-lg-2 control-label" })
+                    @Html.DropDownListFor(x => x.Cumple, (List<SelectListItem>)ViewBag.MovieType, new { @class = "formcontrol", @required = "required" })
+                    @Html.ValidationMessageFor(x => x.Cumple, null, new { @class = "label label-danger" })
+                </div>
+                <div class="form-group">
+                    @Html.Label("Fundamento", new { @class = "col-lg-2 control-label" })
+                    @Html.TextBoxFor(x => x.Fundamento, new { @class = "formcontrol", @placeholder = "Escriba el porque califica o no el parametro", @onkeypress = "return controlLetra(event)", @required = "required" })
+                    @Html.ValidationMessageFor(x => x.Fundamento, null, new { @class = "label label-danger" })
+                </div>
+
+                <div class="form-group" style="display:none">
+                    @Html.Label("Id Ofertante", new { @class = "col-lg-2 control-label" })
+                    @Html.TextBoxFor(x => x.IdOfertante, new { @Value = @ViewBag.IdOfertante, @class = "formcontrol", @onkeypress = "return validarNumeroEn(event)", @required = "required" })
+                    @Html.ValidationMessageFor(x => x.IdOfertante, null, new { @class = "label label-danger" })
+                </div>
+                <div class="form-group" style="display:none">
+                    @Html.Label("Id ActaCalificación", new { @class = "col-lg-2 control-label" })
+                    @Html.TextBoxFor(x => x.IdActaCalificacion, new { @Value = @ViewBag.IdActaCalificacion, @class = "formcontrol", @onkeypress = "return validarNumeroEn(event)", @required = "required" })
+                    @Html.ValidationMessageFor(x => x.IdActaCalificacion, null, new { @class = "label label-danger" })
+                </div>
+            }
+
+        </div>
+    </div>
+
+    <div class="form-group ">
+        <div class="Centrar_content">
+            <button type="submit" class="btn btn-primary">Guardar</button>
+        </div>
+    </div>
+}

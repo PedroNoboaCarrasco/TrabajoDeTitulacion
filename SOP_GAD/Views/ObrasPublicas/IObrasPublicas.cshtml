@@ -1,0 +1,82 @@
+﻿@model List<SOP_GAD.Models.ObrasPublicas>
+@{
+    ViewBag.Title = "Obras Publicas";
+}
+
+
+<html>
+<head>
+
+    <script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="~/Assets/CSS/Tablas.css" rel="stylesheet" type="text/css">
+    <link href="~/Assets/CSS/Contenido.css" rel="stylesheet" type="text/css">
+    <script src="~/Assets/JS/Tablas.js" type="text/javascript"></script>
+
+</head>
+
+<body>
+   
+
+    <ol class="breadcrumb">
+        <li><a href="~/Home/Index"><i class="fa fa-hand-o-left" aria-hidden="true"></i>  Atrás</a></li>
+        <li class="active">
+            Obra Pública a buscar <input id="searchTerm" type="text" onkeyup="doSearch()" />
+        </li>
+        <label class="Derecha_content">
+            @Html.ActionLink("Ingresar Obra Publica", "IObraPublicaIngreso", "ObrasPublicas")
+        </label>
+    </ol>
+
+    <h2 class="headertekst">Lista de Obras Publicas</h2>
+
+    <div>
+        <table id="mitabla" class="Centrar_content">
+            <thead>
+                <tr>
+                    <th>Objeto de Proceso</th>
+                    <th>Código</th>
+                    <th>Tipo de Compra</th>
+                    <th>Presupuesto Referencial Total</th>
+                    <th>Tipo de Contratación:</th>
+                    <th>Forma de Pago</th>
+                    <th>Plazo de Entrega</th>
+                    <th>Funcionario encargado del proceso</th>
+                    <th>Estado del Proceso</th>
+                    <th colspan="2">Opcion</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var Ob in Model)
+                {
+                    <tr>
+                        <td>@Html.ActionLink(Ob.ObjetoProcesoObra, "ISeguimientoObrasLista", "SeguimientoObras", new { id = @Ob.IdObraPublica }, null)</td>
+                        <td>@Ob.CodigoProcesoObra</td>
+                        <td>@Ob.TipoCompraObra</td>
+                        <td>@Ob.PresupuestoObra</td>
+                        <td>@Ob.TipoContratoObra</td>
+                        <td>Anticipo:@Ob.Anticipo% Saldo:@Ob.Saldo% </td>
+                        <td>@Ob.PlazoEntrega</td>
+                        <td>@Ob.FuncionarioEncargado</td>
+                        <td>@Ob.EstadoProceso</td>
+                        <td>@Html.ActionLink("Mod", "IObraPublicaIngreso", "ObrasPublicas", new { id = @Ob.IdObraPublica }, null)</td>
+                        <td>@Html.ActionLink("Eli", "IVerObraPublica", "ObrasPublicas", new { id = @Ob.IdObraPublica }, null)</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+    <div>
+        @if (ViewBag.Message != null)
+        {
+            <script type="text/javascript">
+                window.onload = function () {
+                    alert("@ViewBag.Message");
+            }
+            </script>
+        }
+    </div>
+
+</body>
+</html>

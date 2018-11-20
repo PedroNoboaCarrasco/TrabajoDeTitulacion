@@ -1,0 +1,85 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Aplicación "SOP"</title>
+    <!-- Bootstrap -->
+
+    <link href="~/Assets/CSS/Contenido.css" rel="stylesheet">
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet">
+    <link href="~/Assets/CSS/Header.css" rel="stylesheet">
+    <link href="~/Assets/CSS/PiePagina.css" rel="stylesheet">
+    <link rel='stylesheet prefetch' href='http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css'>
+    <link rel="stylesheet" href="~/Assets/CSS/Iconos.css">
+     
+</head>
+<body class="BodyFondo">
+    <div>
+        <div class="">
+            <div class="container">
+                <div id="block2">
+                    <div class="Centrar_content">
+                        <img src="~/Assets/IMG/GAD.jpg" />
+                    </div>
+                    <div class="date-stamp">
+                        <div class="day">@DateTime.Now.Day th</div>
+                        <div class="month">@DateTime.Now.Month/@DateTime.Now.Year</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container navbar navbar-inverse">
+            @*navbar-fixed-top*@
+        <div class="container">
+            <div class="navbar-header">
+                @*<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>*@
+                @Html.ActionLink("INICIO", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                
+            </div>
+            <div class="navbar-brand">
+                <ul class="nav navbar-nav">
+                    <li>@Html.ActionLink("Obras Publicas", "IObrasPublicas", "ObrasPublicas")</li>
+                    <li>@Html.ActionLink("Barrios", "IBarriosLista", "Barrio")</li>
+                </ul>
+            </div>
+            <div class="navbar-brand Derecha_content">
+                <ul class="nav navbar-nav">
+                    <li>@Html.ActionLink("CERRAR SESIÓN", "Logout", "Account")</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="container body-content">
+        @RenderBody()
+    </div>
+    <br /><br />
+    <div class="container FondoPie">
+        <footer>
+            <div style="text-align:center;">
+                <label class="Izquiera_content">
+                    &copy; @DateTime.Now.Year - Seguimiento de Obras Publicas<br />
+                </label>
+                <label>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    Copyright &copy; 2018 SOP_GAD 1.0 - Aviso legal, política de privacidad y de afiliación
+
+                </label>
+                <label class="Derecha_content">
+                    &copy; Gobierno Autónomo Descentralizado Parroquial Cubijíes
+                </label>
+            </div>
+            <div class="social-btns">
+                <a class="btn facebook" href="#"><i class="fa fa-facebook"></i></a>@*<a class="btn twitter" href="#"><i class="fa fa-twitter"></i></a>*@<a class="btn google" href="#"><i class="fa fa-google"></i></a>@*<a class="btn dribbble" href="#"><i class="fa fa-dribbble"></i></a><a class="btn skype" href="#"><i class="fa fa-skype"></i></a>*@
+            </div>
+        </footer>
+    </div>
+</div>
+</body>
+</html>
